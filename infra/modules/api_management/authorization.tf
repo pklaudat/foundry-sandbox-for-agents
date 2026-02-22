@@ -68,7 +68,7 @@ resource "azuread_application" "this" {
       dynamic "id_token" {
         for_each = toset(try(optional_claims.value.id_token, []))
         content {
-          name                  = id_token.value
+          name = id_token.value
           # additional_properties = id_token.value.additional_properties
         }
       }
@@ -100,7 +100,7 @@ resource "azuread_service_principal" "this" {
 }
 
 resource "azuread_app_role_assignment" "this" {
-  for_each = local.role_assignments
+  for_each            = local.role_assignments
   app_role_id         = each.value.app_role.id
   resource_object_id  = azuread_service_principal.this[each.key].object_id
   principal_object_id = data.azuread_client_config.this.object_id

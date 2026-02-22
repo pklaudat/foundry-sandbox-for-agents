@@ -1,5 +1,0 @@
-name                = "apim-dev-pklauda"
-publisher_email     = "pauloklaudat@gmail.com"
-publisher_name      = "paulo"
-location            = "centralindia"
-resource_group_name = "RG"
