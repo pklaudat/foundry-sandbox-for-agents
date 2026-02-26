@@ -17,7 +17,7 @@ resource "azapi_resource" "this" {
       allowProjectManagement        = true
       allowedFqdnList               = var.allowed_egress_fqdns
       disableLocalAuth              = true
-      restrictOutboundNetworkAccess = true
+      restrictOutboundNetworkAccess = false
       publicNetworkAccess           = "Enabled"
       customSubDomainName           = var.name
       networkAcls = {
