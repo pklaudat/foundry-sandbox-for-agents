@@ -84,11 +84,11 @@ variable "models" {
 
 variable "serverless_mcp_servers" {
   type = list(object({
-    name = string
-    runtime_name = optional(string, "python")
+    name            = string
+    runtime_name    = optional(string, "python")
     runtime_version = optional(string, "3.13")
     zip_code_deploy = string
   }))
   description = "list of serverless mcp servers to be deployed using azure functions."
-  default = []
+  default     = []
 }

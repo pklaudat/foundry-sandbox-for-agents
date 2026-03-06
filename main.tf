@@ -43,10 +43,10 @@ module "ai_foundry" {
 
 
 module "mcp_servers" {
-  for_each = { for mcp in var.serverless_mcp_servers: mcp.name => mcp }
-  source = "./modules/flex_function_app"
-  depends_on = [ azurerm_resource_group.this ]
-  function_app_name = each.key
+  for_each            = { for mcp in var.serverless_mcp_servers : mcp.name => mcp }
+  source              = "./modules/flex_function_app"
+  depends_on          = [azurerm_resource_group.this]
+  function_app_name   = each.key
   resource_group_name = azurerm_resource_group.this.name
-  location = var.location
+  location            = var.location
 }

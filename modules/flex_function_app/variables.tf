@@ -45,7 +45,7 @@ variable "service_plan_id" {
 variable "app_settings" {
   type        = map(string)
   description = "Custom app settings for this app."
-  default = null
+  default     = null
 }
 
 variable "allowed_ips_to_access" {
@@ -60,12 +60,12 @@ variable "monitoring_enabled" {
 }
 
 variable "app_insights_connection_string" {
-  type = string
+  type    = string
   default = null
 }
 
 variable "app_insights_instrumentation_key" {
-  type = string
+  type    = string
   default = null
 }
 
