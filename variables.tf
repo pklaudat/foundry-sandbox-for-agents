@@ -9,6 +9,16 @@ variable "prefix_name" {
   description = "prefix name for azure resources."
 }
 
+variable "owner_name" {
+  type        = string
+  description = "The owner name for this deployment."
+}
+
+variable "owner_email" {
+  type        = string
+  description = "The owner email - used as email publisher for the AI Gateway."
+}
+
 variable "environment" {
   type        = string
   description = "Environment definition."
@@ -41,7 +51,7 @@ variable "allowed_egress_fqdns" {
 variable "projects" {
   type        = list(string)
   description = "list of projects workspace for agents."
-  default     = ["Default"]
+  default     = ["AgentsLeague"]
 }
 
 variable "allowed_fqdn_ai_services" {
@@ -91,4 +101,38 @@ variable "serverless_mcp_servers" {
   }))
   description = "list of serverless mcp servers to be deployed using azure functions."
   default     = []
+}
+
+
+variable "cosmos_db_account_name" {
+  type        = string
+  description = "Cosmos DB account name used for Agent Memory store."
+
+}
+
+variable "databases" {
+  description = "Configuration for Cosmos DB databases."
+  type = list(object({
+    name       = string
+    throughput = optional(number)
+    containers = list(object({
+      name          = string
+      partition_key = string
+      throughput    = number
+    }))
+  }))
+  default = []
+}
+
+variable "queues" {
+  description = "List of Service Bus queues to create"
+  type = list(object({
+    name                                 = string
+    max_size_in_megabytes                = optional(number, 1024)
+    default_message_ttl                  = optional(string, "P14D")
+    lock_duration                        = optional(string, "PT1M")
+    max_delivery_count                   = optional(number, 10)
+    dead_lettering_on_message_expiration = optional(bool, true)
+  }))
+  default = []
 }

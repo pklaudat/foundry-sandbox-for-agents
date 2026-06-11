@@ -19,6 +19,6 @@ data "azuread_application" "this" {
 resource "azurerm_role_assignment" "this" {
   scope                = module.ai_foundry.id
   principal_id         = data.azuread_client_config.this.object_id
-  role_definition_name = "Azure AI User"
+  role_definition_name = "Cognitive Services User"
   principal_type       = data.azuread_directory_object.this.type
 }
