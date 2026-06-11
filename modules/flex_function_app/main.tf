@@ -34,16 +34,16 @@ resource "azurerm_function_app_flex_consumption" "this" {
     type         = "SystemAssigned"
     identity_ids = []
   }
-  service_plan_id             = var.service_plan_id == null ? azurerm_service_plan.this[0].id : var.service_plan_id
-  storage_authentication_type = "SystemAssignedIdentity"
-  storage_container_endpoint  = "${azurerm_storage_account.this.primary_blob_endpoint}${azurerm_storage_container.this.name}"
-  storage_container_type      = "blobContainer"
-  runtime_name                = var.runtime_name
-  runtime_version             = var.runtime_name == "python" ? var.runtime_version : "1.0"
-  maximum_instance_count      = 40
-  instance_memory_in_mb       = 2048
+  service_plan_id                                = var.service_plan_id == null ? azurerm_service_plan.this[0].id : var.service_plan_id
+  storage_authentication_type                    = "SystemAssignedIdentity"
+  storage_container_endpoint                     = "${azurerm_storage_account.this.primary_blob_endpoint}${azurerm_storage_container.this.name}"
+  storage_container_type                         = "blobContainer"
+  runtime_name                                   = var.runtime_name
+  runtime_version                                = var.runtime_name == "python" ? var.runtime_version : "1.0"
+  maximum_instance_count                         = 40
+  instance_memory_in_mb                          = 2048
   webdeploy_publish_basic_authentication_enabled = false
-  https_only = true
+  https_only                                     = true
 
   app_settings = merge(
     local.base_app_settings,
@@ -53,7 +53,7 @@ resource "azurerm_function_app_flex_consumption" "this" {
   )
 
   auth_settings_v2 {
-    auth_enabled = true
+    auth_enabled           = true
     require_authentication = true
     unauthenticated_action = "RedirectToLoginPage"
 

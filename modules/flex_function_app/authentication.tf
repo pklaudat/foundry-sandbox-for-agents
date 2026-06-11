@@ -5,7 +5,7 @@ resource "azuread_application" "this" {
   owners       = [data.azuread_client_config.this.object_id]
 
   web {
-    redirect_uris = [ "https://${var.function_app_name}.azurewebsites.net/.auth/login/aad/callback"]
+    redirect_uris = ["https://${var.function_app_name}.azurewebsites.net/.auth/login/aad/callback"]
     implicit_grant {
       id_token_issuance_enabled = true
     }
